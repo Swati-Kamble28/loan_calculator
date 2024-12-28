@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "loan_calculator"
+version = "0.1.0"
+description = "Study loan calculator with automated testing and quality metrics"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9.12"
+pytest = "^8.0.0"
+pytest-cov = "2.12"
+mutmut = "^3.2.2"
+pylint = "^2.17"
+black = "^22.3"
+radon = "^5.1"
+mutpy = "^0.6.1"
+
+[tool.poetry.dev-dependencies]
+# Any additional development dependencies can go here
+
+
+
+[tool.poetry.group.dev.dependencies]
+mutmut = "^3.2.2"
+pytest-mutagen = "1.2"
+

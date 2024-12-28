@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry
+        poetry install
+    - name: Run tests and coverage
+      run: |
+        poetry run pytest --cov=loan_calculator tests/
+    - name: Run mutation tests
+      run: |
+        poetry run mutmut run
+    - name: Code quality checks
+      run: |
+        poetry run pylint loan_calculator
+        poetry run black --check .
+        poetry run radon cc loan_calculator

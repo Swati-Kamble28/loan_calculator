@@ -1,0 +1,32 @@
+{
+    "exit_code_by_key": {
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_1": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_2": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_3": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_4": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_5": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_6": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_7": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_8": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_9": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_10": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1__init____mutmut_11": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_interest__mutmut_1": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_interest__mutmut_2": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_interest__mutmut_3": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_interest__mutmut_4": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_total_amount__mutmut_1": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_monthly_payment__mutmut_1": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_monthly_payment__mutmut_2": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_monthly_payment__mutmut_3": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_monthly_payment__mutmut_4": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_monthly_payment__mutmut_5": null,
+        "loan_calculator.x\u01c1LoanCalculator\u01c1calculate_monthly_payment__mutmut_6": null
+    },
+    "hash_by_function_name": {
+        "__init__": "31e101629cd21d0afeaf8f5992926f02",
+        "calculate_interest": "5ff50ec726b15a3e3cfec9592716d800",
+        "calculate_total_amount": "766f0af2c4aa6e1a6c581aee7e6b431a",
+        "calculate_monthly_payment": "c1bf4ce9ba4fa67d1b1e2acb80628437"
+    }
+}
