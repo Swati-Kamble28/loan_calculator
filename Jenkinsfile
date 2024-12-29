@@ -1,29 +1,82 @@
 pipeline {
     agent any
 
+    environment {
+        VERSION = '1.0.0' // Example version; adjust as needed
+    }
+
     stages {
-        stage('Build') {
+        stage('Start') {
             steps {
-                // Display a message in the Stage View
-                bat 'echo Starting Build Stage...'
+                echo 'Pipeline started by user.'
+            }
+        }
 
-                // Run the Loan Calculator script
-                bat 'python src/loan_calculator.py'
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
 
-                // Notify completion of the stage
-                bat 'echo Build Stage Completed.'
+        stage('Checkout') {
+            steps {
+                echo 'Checking out the repository...'
+                checkout scm
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                echo 'Setting up Python environment...'
+                bat 'python -m pip install --upgrade pip'
+                bat 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                echo 'Running tests...'
+                bat 'python -m pytest tests/ --junitxml=test-results.xml'
+            }
+            post {
+                always {
+                    junit 'test-results.xml'
+                }
+            }
+        }
+
+        stage('Build Artifact') {
+            steps {
+                echo 'Building artifact...'
+                bat 'mkdir artifacts'
+                bat 'echo ${VERSION} > artifacts/version.txt'
+                bat '7z a artifacts/loan_calculator_${VERSION}.zip src\\*'
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                echo 'Archiving artifacts...'
+                archiveArtifacts artifacts: 'artifacts/loan_calculator_${VERSION}.zip', fingerprint: true
+            }
+        }
+
+        stage('Post Actions') {
+            steps {
+                echo 'Post-build actions...'
             }
         }
     }
 
     post {
+        always {
+            echo 'End of Pipeline'
+        }
         success {
-            // Success message visible in Stage View
-            echo 'Build completed successfully!'
+            echo 'Build succeeded!'
         }
         failure {
-            // Failure message visible in logs
-            echo 'Build failed. Please check the logs.'
+            echo 'Build failed!'
         }
     }
 }
