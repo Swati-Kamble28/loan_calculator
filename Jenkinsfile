@@ -9,32 +9,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out the repository...'
-                // Replace this line with your SVN checkout
-                svn 'https://svn.mycorp/trunk/'
+                checkout scm
             }
         }
         
-        stage('Build') {
-            steps {
-                echo 'Building the project...'
-                // Run the build command (make all)
-                sh 'make all'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                // Run the test command (make test)
-                sh 'make test'
-            }
-            post {
-                always {
-                    junit 'test-results.xml'
-                }
-            }
-        }
-
         stage('Setup Python Environment') {
             steps {
                 echo 'Setting up Python environment...'
@@ -58,16 +36,17 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Build Artifact') {
-            steps {
-                bat '''
-                    mkdir artifacts
-                    echo ${VERSION} > artifacts\\version.txt
-                    python -c "import shutil; shutil.make_archive('artifacts\\\\loan_calculator_${VERSION}', 'zip', 'src')"
-                '''
-            }
-        }
+    steps {
+        bat '''
+            mkdir artifacts
+            echo ${VERSION} > artifacts\\version.txt
+            python -c "import shutil; shutil.make_archive('artifacts\\\\loan_calculator_${VERSION}', 'zip', 'src')"
+        '''
+    }
+}
+
 
         stage('Archive Artifacts') {
             steps {
@@ -75,6 +54,17 @@ pipeline {
                 echo 'Artifact archived successfully.'
             }
         }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed.'
+        }
+    }
+}
     }
 
     post {
