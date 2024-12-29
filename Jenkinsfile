@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        VERSION = "1.0.${BUILD_NUMBER}" // Dynamic versioning
+        VERSION = "1.0.${BUILD_NUMBER}"
     }
 
     stages {
@@ -36,17 +36,16 @@ pipeline {
                 }
             }
         }
-        
-        stage('Build Artifact') {
-    steps {
-        bat '''
-            mkdir artifacts
-            echo ${VERSION} > artifacts\\version.txt
-            python -c "import shutil; shutil.make_archive('artifacts\\\\loan_calculator_${VERSION}', 'zip', 'src')"
-        '''
-    }
-}
 
+        stage('Build Artifact') {
+            steps {
+                bat '''
+                    mkdir artifacts
+                    echo ${VERSION} > artifacts\\version.txt
+                    python -c "import shutil; shutil.make_archive('artifacts\\\\loan_calculator_${VERSION}', 'zip', 'src')"
+                '''
+            }
+        }
 
         stage('Archive Artifacts') {
             steps {
@@ -65,16 +64,6 @@ pipeline {
         }
     }
 }
-    }
 
-    post {
-        success {
-            echo 'Build succeeded!'
-        }
-        failure {
-            echo 'Build failed.'
-        }
-    }
-}
 
 
