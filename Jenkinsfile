@@ -46,13 +46,17 @@ pipeline {
         }
 
         stage('Build Artifact') {
-            steps {
-                echo 'Building artifact...'
+    steps {
+        echo 'Building artifact...'
+        script {
+            if (!fileExists('artifacts')) {
                 bat 'mkdir artifacts'
-                bat 'echo ${VERSION} > artifacts/version.txt'
-                bat '7z a artifacts/loan_calculator_${VERSION}.zip src\\*'
             }
         }
+        bat 'echo ${VERSION} > artifacts/version.txt'
+        bat '7z a artifacts/loan_calculator_${VERSION}.zip src\\*'
+    }
+}
 
         stage('Archive Artifacts') {
             steps {
