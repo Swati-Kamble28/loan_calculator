@@ -63,3 +63,4 @@ with open(FILE_PATH, "w", encoding="utf-8") as file:
         for line in lines
         if line.strip() or not lines[-1].strip()
     ])
+

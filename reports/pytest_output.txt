@@ -1,6 +1,8 @@
 ============================= test session starts =============================
-platform win32 -- Python 3.9.13, pytest-6.2.5, py-1.11.0, pluggy-1.5.0
-rootdir: E:\loan_calculator, configfile: pytest.ini, testpaths: tests
+platform win32 -- Python 3.9.13, pytest-7.4.0, pluggy-1.5.0
+rootdir: E:\loan_calculator
+configfile: pytest.ini
+testpaths: tests
 collected 8 items
 
 tests\test_loan_calculator.py ........                                   [100%]
